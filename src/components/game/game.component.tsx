@@ -14,6 +14,8 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { gradientDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { useQuestionsStore } from "../../store/questions";
 import { type Question as QuestionType } from "../../store/type";
+import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import { Footer } from "../footer";
 
 const getBackgroundColor = (info: QuestionType, index: number) => {
   const { userSelectedAnswer, correctAnswer } = info;
@@ -71,13 +73,35 @@ const Question = ({ info }: { info: QuestionType }) => {
 };
 
 export const Game: React.FC = () => {
-  const { questions, currentQuestion } = useQuestionsStore();
+  const { questions, currentQuestion, goNextQuestion, goPreviousQuestion } =
+    useQuestionsStore();
 
   const questionInfo = questions[currentQuestion];
 
   return (
     <>
+      <Stack
+        direction="row"
+        gap={2}
+        alignItems="center"
+        justifyContent="center"
+      >
+        <IconButton
+          onClick={goPreviousQuestion}
+          disabled={currentQuestion === 0}
+        >
+          <ArrowBackIosNew />
+        </IconButton>
+        {currentQuestion + 1} / {questions.length}
+        <IconButton
+          onClick={goNextQuestion}
+          disabled={currentQuestion >= questions.length - 1}
+        >
+          <ArrowForwardIos />
+        </IconButton>
+      </Stack>
       <Question info={questionInfo} />
+      <Footer />
     </>
   );
 };
