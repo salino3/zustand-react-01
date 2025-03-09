@@ -1,10 +1,12 @@
 import "./App.scss";
+import { LogoJS } from "./icons";
 
 function App() {
   return (
-    <div className="root">
+    <main className="root">
       <h1 className="titleWeb">Javascript Quiz</h1>
-    </div>
+      <LogoJS />
+    </main>
   );
 }
 
