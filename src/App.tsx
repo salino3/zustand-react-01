@@ -1,7 +1,7 @@
 import { Container, Stack, Typography } from "@mui/material";
 import { useQuestionsStore } from "./store/questions";
 import { LogoJS } from "./icons";
-import { Start } from "./components";
+import { Game, Start } from "./components";
 import "./App.scss";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
             Jascript Quiz
           </Typography>
         </Stack>
-        {questions && questions?.length === 0 ? <Start /> : "Juego"}
+        {questions && questions?.length === 0 ? <Start /> : <Game />}
       </Container>
     </main>
   );
