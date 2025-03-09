@@ -1,8 +1,13 @@
 import { Container, Stack, Typography } from "@mui/material";
+import { useQuestionsStore } from "./store/questions";
 import { LogoJS } from "./icons";
+import { Start } from "./components";
 import "./App.scss";
 
 function App() {
+  // const questions = useQuestionsStore((state) => state?.questions);
+  const { questions } = useQuestionsStore();
+  console.log(questions);
   return (
     <main className="root">
       <Container>
@@ -17,6 +22,7 @@ function App() {
             Jascript Quiz
           </Typography>
         </Stack>
+        {questions && questions?.length === 0 ? <Start /> : "Juego"}
       </Container>
     </main>
   );
