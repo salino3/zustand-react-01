@@ -98,3 +98,16 @@ export const useQuestionsStore = create<State>()(
     )
   )
 );
+
+// Selector for avoid rerender
+export const useQuestionsSelectors = (): Pick<
+  State,
+  "questions" | "goNextQuestion" | "goPreviousQuestion" | "reset"
+> => {
+  return {
+    questions: useQuestionsStore((state) => state.questions),
+    goNextQuestion: useQuestionsStore((state) => state.goNextQuestion),
+    goPreviousQuestion: useQuestionsStore((state) => state.goPreviousQuestion),
+    reset: useQuestionsStore((state) => state.reset),
+  };
+};
